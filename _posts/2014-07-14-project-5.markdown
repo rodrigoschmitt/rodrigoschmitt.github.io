@@ -1,12 +1,11 @@
 ---
 layout: default
 modal-id: 5
-date: 2014-07-14
-img: safe.png
+date: 2018-08-29
+img: app_estadao_iphone.png
 alt: image-alt
-project-date: April 2014
-client: Start Bootstrap
-category: Web Development
-description: Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!
-
+project-date: Novembro 2009
+client: MobiMarket
+category: iOS Development
+description: <b>I created the App and I worked on it until version 1.1 in 2009.</b></br>App from the biggest newspaper in Brazil, with live news about Brazil and the world, and bringing the lastest news about Brazilian cities, sports, economy, tecnology and other categories.</br></br>The challenge in 2009 was to work with offline content, ads, and metrics.
 ---

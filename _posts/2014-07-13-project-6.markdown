@@ -4,8 +4,8 @@ modal-id: 6
 date: 2018-08-29
 img: app_caras.png
 alt: image-alt
-project-date: November 2009
+project-date: Outubro 2009
 client: MobiMarket
 category: iOS Development
-description: <b>I created the App and worked with the App until  version 1.2 in 2009.</b></br>Exclusive development to iPhone, in the first 6 hours at App Store it was top 20 in News Category. The App provide for the user the lastest celebrity news from arould the world, featuring videos, exclusive photos, food and more!
+description: <b>I created the App and I worked on it until version 1.2 in 2009.</b></br>Exclusive development for the iPhone, in the first 6 hours on the App Store, it was top 20 in the news Category. The App provides the lastest celebrity news from arould the world, featuring videos, exclusive photos, food and more!
 ---
