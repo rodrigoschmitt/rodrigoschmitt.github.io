@@ -1,12 +1,11 @@
 ---
 layout: default
 modal-id: 3
-date: 2014-07-16
-img: circus.png
+date: 2018-08-31
+img: app_zerohora.png
 alt: image-alt
-project-date: April 2014
-client: Start Bootstrap
-category: Web Development
-description: Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!
-
+project-date: May 2011
+client: RBS Group
+category: iOS Development
+description: I worked for 4 years in the RBS Group, I helped the company with the creation of the mobile team and we developed 8 newspaper Apps, like ZH, DC, PIO, among others.</br></br> I worked with 2 more Apps, Gremista and Colorado, both the main soccer clubs of the south of Brazil with the last news of the soccer team, highlights, analyzes, schedules, stats, scores and coverage of the game with minute by minute.
 ---
