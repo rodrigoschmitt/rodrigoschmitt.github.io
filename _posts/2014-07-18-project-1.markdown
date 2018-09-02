@@ -1,12 +1,11 @@
 ---
 layout: default
 modal-id: 1
-date: 2014-07-18
-img: cabin.png
+date: 2018-09-02
+img: app_xing_video.png
 alt: image-alt
-project-date: April 2014
-client: Start Bootstrap
-category: Web Development
-description: Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!
-
+project-date: April 2017
+client: XING SE
+category: iOS Development
+description: I have worked with Swift and Objective-C on the video team to support other teams to show video content in the Xing app.</br></br>We started the video project using JWPlayer API for iOS and then switched to our own player using AVPlayer.
 ---
