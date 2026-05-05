@@ -500,6 +500,44 @@ body {
 .feat h4 { margin: 0; font-size: 16px; font-weight: 600; }
 .feat p { margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.5; text-wrap: pretty; }
 
+.lang-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.lang-tile {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 0.5px solid var(--border); border-radius: 14px;
+  font-size: 14px; font-weight: 500;
+}
+.lang-flag { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.lang-soon { margin: 14px 0 0; text-align: center; font-size: 13px; color: var(--text-muted); }
+
+.vaulto-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 14px;
+}
+.btn-appstore {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 9px 18px; border-radius: 12px;
+  background: #000; color: #fff;
+  text-decoration: none;
+  border: 0.5px solid #000;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+.btn-appstore:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -12px rgba(0,0,0,0.55); }
+.btn-appstore-glyph { margin-bottom: 2px; }
+.btn-appstore-text { display: flex; flex-direction: column; line-height: 1.05; }
+.btn-appstore-label { font-size: 10px; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.04em; }
+.btn-appstore-name { font-size: 17px; font-weight: 600; margin-top: 2px; }
+.vaulto-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 16px; border-radius: 12px;
+  background: var(--surface); color: var(--accent);
+  border: 0.5px solid var(--border);
+  font-size: 14px; font-weight: 500; text-decoration: none;
+  transition: transform 0.1s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.vaulto-link:hover { transform: translateY(-1px); border-color: var(--accent); color: var(--accent-2); }
+
 /* ---------- About ---------- */
 .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: start; padding: 12px 0 24px; }
 .about-photo-card { text-align: center; }
@@ -579,6 +617,7 @@ body {
   .grid-2, .stats-card, .awards, .skills-list, .vaulto-hero, .featured-card, .about-grid, .contact-grid {
     grid-template-columns: 1fr;
   }
+  .lang-grid { grid-template-columns: repeat(2, 1fr); }
   .featured-screens { flex-wrap: wrap; }
   .vaulto-screens { transform: scale(0.85); }
   .page-title { font-size: 36px; }
