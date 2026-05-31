@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpecDrive | Rodrigo Andrade</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("themeMode") || "auto";
+        var resolved = saved === "auto"
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : saved;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) { document.documentElement.dataset.theme = "dark"; }
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23fb923c'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='-apple-system,sans-serif' font-weight='700' font-size='28' fill='white'>R</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* SpecDrive page — scoped styles. Brand green overrides the site accent within the page only. */
+    .specdrive-page{--accent:#00C875;--accent-2:#19d98c}
+    .sd-hero{display:grid;grid-template-columns:1.05fr 1.25fr;gap:48px;align-items:start;margin:24px 0 8px}
+    .sd-hero-text{position:sticky;top:84px}
+    .sd-kvs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+    .sd-kv{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:var(--surface)}
+    .sd-kv-l{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:4px}
+    .sd-kv-v{font-size:14px;font-weight:600}
+    .sd-blurb{color:var(--text-dim);font-size:15px;line-height:1.7;margin:0 0 24px}
+    .sd-pillars{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+    .sd-pillar{display:flex;gap:14px;align-items:flex-start}
+    .sd-pillar-icon{flex:none;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+    .sd-pillar-title{font-weight:600;font-size:15px;margin-bottom:2px}
+    .sd-pillar-sub{color:var(--text-dim);font-size:13.5px;line-height:1.55}
+
+    /* Stylised app window mock */
+    .sd-window{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:var(--surface);box-shadow:0 24px 60px -28px rgba(0,0,0,.5)}
+    .sd-winbar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:color-mix(in srgb,var(--surface) 80%,var(--bg))}
+    .sd-dot{width:11px;height:11px;border-radius:50%;background:var(--border)}
+    .sd-wintitle{margin-left:8px;font-size:12.5px;font-weight:600;color:var(--text-dim);letter-spacing:.02em}
+    .sd-winbody{padding:18px}
+    .sd-phasebar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .sd-phase{font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--border);color:var(--text-dim);background:var(--bg);display:inline-flex;align-items:center;gap:5px}
+    .sd-phase.done{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+    .sd-phase.active{color:#fff;background:var(--accent);border-color:var(--accent)}
+    .sd-block{border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;background:var(--bg)}
+    .sd-block-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:8px}
+    .sd-story{font-size:14px;line-height:1.7}
+    .sd-story b{color:var(--accent);font-weight:700}
+    .sd-ghost{color:var(--text-dim);font-style:italic}
+    .sd-ai{border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:12px;padding:14px 16px;background:color-mix(in srgb,var(--accent) 7%,transparent)}
+    .sd-ai-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+    .sd-ai-tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:5px}
+    .sd-ai-meta{font-size:11px;color:var(--text-dim)}
+    .sd-ai-sugg{font-size:13.5px;line-height:1.6;margin-bottom:12px}
+    .sd-ai-actions{display:flex;gap:8px}
+    .sd-ai-btn{font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+    .sd-ai-btn.add{background:var(--accent);border-color:var(--accent);color:#fff}
+
+    /* Six phases */
+    .sd-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .sd-pcard{border:1px solid var(--border);border-radius:14px;padding:20px;background:var(--surface)}
+    .sd-pnum{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--accent);margin-bottom:10px}
+    .sd-pcard h4{margin:0 0 8px;font-size:16px}
+    .sd-pcard p{margin:0;color:var(--text-dim);font-size:13.5px;line-height:1.6}
+
+    /* Feature grid */
+    .sd-feats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .sd-feat{border:1px solid var(--border);border-radius:14px;padding:22px;background:var(--surface)}
+    .sd-feat-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);margin-bottom:14px}
+    .sd-feat h4{margin:0 0 8px;font-size:16px}
+    .sd-feat h4 .soon{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:middle}
+    .sd-feat p{margin:0;color:var(--text-dim);font-size:14px;line-height:1.65}
+
+    /* CTA */
+    .sd-cta{display:flex;flex-direction:column;align-items:center;gap:18px;padding:20px 0}
+    .sd-cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center}
+    .sd-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;text-decoration:none;background:var(--accent);color:#fff;border:1px solid var(--accent)}
+    .sd-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);text-decoration:none;font-weight:600;font-size:15px;padding:13px 22px;border:1px solid var(--border);border-radius:12px}
+    .sd-link:hover{text-decoration:underline}
+
+    @media (max-width:860px){
+      .sd-hero{grid-template-columns:1fr;gap:28px}
+      .sd-hero-text{position:static}
+      .sd-phases{grid-template-columns:1fr}
+      .sd-feats{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body data-page="specdrive">
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">RA</div>
+        <div class="brand-text">
+          <div class="brand-name">Rodrigo Andrade</div>
+          <div class="brand-role">iOS Developer · Dublin</div>
+        </div>
+      </div>
+      <nav class="tabs" role="tablist">
+        <a class="tab" href="index.html" role="tab" aria-selected="false">Home</a><a class="tab" href="work.html" role="tab" aria-selected="false">Work</a><a class="tab active" href="specdrive.html" role="tab" aria-selected="true">SpecDrive</a><a class="tab" href="about.html" role="tab" aria-selected="false">About</a><a class="tab" href="contact.html" role="tab" aria-selected="false">Contact</a>
+      </nav>
+      <div class="topbar-spacer" aria-hidden="true"></div>
+      <button id="tweaks-trigger" class="tweaks-trigger" type="button" aria-label="Tweaks"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9z"/></svg></button>
+    </header>
+    <main class="content">
+      <div class="page specdrive-page">
+        <header class="page-head">
+          <div class="page-eyebrow">Featured project · 2026</div>
+          <h1 class="page-title">SpecDrive</h1>
+          <p class="page-sub">Specs your AI can build. Spec-Driven Development for everyone — no terminal required.</p>
+        </header>
+
+        <section class="sd-hero">
+          <div class="sd-hero-text">
+            <div class="sd-kvs">
+              <div class="sd-kv"><div class="sd-kv-l">Platform</div><div class="sd-kv-v">iPadOS 26+ · macOS 26+</div></div>
+              <div class="sd-kv"><div class="sd-kv-l">Stack</div><div class="sd-kv-v">SwiftUI · SwiftData · CloudKit</div></div>
+              <div class="sd-kv"><div class="sd-kv-l">AI</div><div class="sd-kv-v">Apple Intelligence · on-device</div></div>
+              <div class="sd-kv"><div class="sd-kv-l">Site</div><div class="sd-kv-v">specdrive.app</div></div>
+            </div>
+            <p class="sd-blurb">Before an AI agent writes a single line of code, it needs a plan. That's what Spec-Driven Development is about: define your idea, your principles, user stories, requirements and tech choices <em>before</em> any code is generated. The result is consistent, maintainable, production-ready output instead of vibe-coded guesswork. Every other SDD tool needs a terminal, SSH keys and developer knowledge — SpecDrive brings it to Product Owners, PMs and indie builders, touch-first.</p>
+            <div class="sd-pillars">
+              <div class="sd-pillar">
+                <div class="sd-pillar-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8M12 18v2"/></svg></div>
+                <div class="sd-pillar-text"><div class="sd-pillar-title">Built for iPad &amp; Mac</div><div class="sd-pillar-sub">Write your spec on the sofa with your iPad, or at your desk on a Mac. Touch-first, no command line.</div></div>
+              </div>
+              <div class="sd-pillar">
+                <div class="sd-pillar-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C7.5 2.8 6.4 3.1 6.4 3.1a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 5 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></div>
+                <div class="sd-pillar-text"><div class="sd-pillar-title">GitHub without the pain</div><div class="sd-pillar-sub">Connect your repo in seconds — no SSH setup, no config files. Branches, commits and sync happen right inside the app.</div></div>
+              </div>
+              <div class="sd-pillar">
+                <div class="sd-pillar-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z"/></svg></div>
+                <div class="sd-pillar-text"><div class="sd-pillar-title">On-device intelligence</div><div class="sd-pillar-sub">Apple Intelligence drives every phase, running entirely on-device. Suggestions are always opt-in, never auto-applied.</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sd-window" aria-hidden="true">
+            <div class="sd-winbar">
+              <span class="sd-dot"></span><span class="sd-dot"></span><span class="sd-dot"></span>
+              <span class="sd-wintitle">SpecDrive — Onboarding flow · 002</span>
+            </div>
+            <div class="sd-winbody">
+              <div class="sd-phasebar">
+                <span class="sd-phase done">✓ Principles</span>
+                <span class="sd-phase done">✓ Describe</span>
+                <span class="sd-phase active">Clarify</span>
+                <span class="sd-phase">Tech</span>
+                <span class="sd-phase">Tasks</span>
+                <span class="sd-phase">Export</span>
+              </div>
+              <div class="sd-block">
+                <div class="sd-block-label">User story</div>
+                <div class="sd-story">As a <b>new user</b>, I want to <b>connect my GitHub repo</b> <span class="sd-ghost">so that my specs are saved and versioned without touching a terminal.</span></div>
+              </div>
+              <div class="sd-ai">
+                <div class="sd-ai-head">
+                  <span class="sd-ai-tag"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9z"/></svg>Apple Intelligence</span>
+                  <span class="sd-ai-meta">on-device</span>
+                </div>
+                <div class="sd-ai-sugg">Suggested acceptance criteria: “The repo connects via device-code sign-in, with no SSH key or config file required.”</div>
+                <div class="sd-ai-actions">
+                  <button class="sd-ai-btn" type="button">Skip</button>
+                  <button class="sd-ai-btn add" type="button">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>The six phases</h2></div>
+          <div class="sd-phases">
+            <div class="sd-pcard"><div class="sd-pnum">01</div><h4>Define Principles</h4><p>Set the rules your agent must follow. AI suggests principles from your project type and tech stack.</p></div>
+            <div class="sd-pcard"><div class="sd-pnum">02</div><h4>Describe Your Idea</h4><p>Capture user stories. AI drafts the “so that” outcome and acceptance criteria inline as you type.</p></div>
+            <div class="sd-pcard"><div class="sd-pnum">03</div><h4>Clarify Requirements</h4><p>AI reviews the whole spec and asks the targeted questions that actually matter before a build starts.</p></div>
+            <div class="sd-pcard"><div class="sd-pnum">04</div><h4>Choose Your Tech</h4><p>Pick a stack preset — SwiftUI, React, Vue or plain HTML. AI recommends one from your description.</p></div>
+            <div class="sd-pcard"><div class="sd-pnum">05</div><h4>Review Tasks</h4><p>AI flags any task that is too vague for an agent to execute, so nothing gets lost in translation.</p></div>
+            <div class="sd-pcard"><div class="sd-pnum">06</div><h4>Export to Agent</h4><p>A completeness check, then hand the branch to Claude Code, Copilot, Gemini CLI or Kiro.</p></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>What makes it different</h2></div>
+          <div class="sd-feats">
+            <div class="sd-feat">
+              <div class="sd-feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 20h8M12 18v2"/></svg></div>
+              <h4>Touch-first, terminal-free</h4>
+              <p>Designed for the way PMs and POs actually work. Writing a spec shouldn't require knowing what a git branch is — so it never asks.</p>
+            </div>
+            <div class="sd-feat">
+              <div class="sd-feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C7.5 2.8 6.4 3.1 6.4 3.1a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 5 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></div>
+              <h4>GitHub, the easy way</h4>
+              <p>OAuth device-flow sign-in, path-scoped to your spec files only. No SSH keys, no config, and SpecDrive never touches your source code.</p>
+            </div>
+            <div class="sd-feat">
+              <div class="sd-feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13l2 2 4-4"/></svg></div>
+              <h4>No markdown, ever</h4>
+              <p>Every spec file is generated programmatically in the background. You write in a structured editor and never see a raw <code>.md</code> file.</p>
+            </div>
+            <div class="sd-feat">
+              <div class="sd-feat-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 20h10M9 16v4M15 16v4"/><path d="M9 10l2 2 4-4"/></svg></div>
+              <h4>Agent handoff <span class="soon">Coming soon</span></h4>
+              <p>A direct integration with AI agents running on a Mac Mini or Mac Studio — the moment you finish your spec, your agent starts building.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="sd-cta">
+            <div class="sd-cta-row">
+              <a class="sd-btn" href="https://specdrive.app" target="_blank" rel="noopener" aria-label="Download SpecDrive">
+                <svg width="20" height="24" viewBox="0 0 22 26" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.04-3.05 2.49-4.51 2.6-4.58-1.42-2.07-3.62-2.36-4.4-2.39-1.87-.19-3.66 1.1-4.61 1.1-.96 0-2.42-1.07-3.99-1.04-2.04.03-3.94 1.19-5 3.02-2.15 3.73-.55 9.24 1.55 12.27 1.03 1.49 2.25 3.16 3.86 3.1 1.55-.06 2.13-1 4.01-1 1.87 0 2.41 1 4.05.97 1.67-.03 2.73-1.51 3.74-3 1.18-1.71 1.66-3.39 1.69-3.48-.04-.02-3.24-1.24-3.5-4.97zm-3.06-9.13c.85-1.04 1.43-2.48 1.27-3.91-1.23.05-2.71.82-3.6 1.85-.79.91-1.49 2.38-1.31 3.78 1.37.11 2.78-.7 3.64-1.72z"/></svg>
+                <span>Download SpecDrive</span>
+              </a>
+              <a class="sd-link" href="https://specdrive.app" target="_blank" rel="noopener">
+                <span>Learn more at specdrive.app</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <nav class="dock" role="tablist">
+      <a class="dock-tab" href="index.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span class="dock-label">Home</span></a><a class="dock-tab" href="work.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4h8v2"/><path d="M3 12h18"/></svg></span><span class="dock-label">Work</span></a><a class="dock-tab active" href="specdrive.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l4 4v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span><span class="dock-label">SpecDrive</span></a><a class="dock-tab" href="about.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></span><span class="dock-label">About</span></a><a class="dock-tab" href="contact.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="dock-label">Contact</span></a>
+    </nav>
+  </div>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
