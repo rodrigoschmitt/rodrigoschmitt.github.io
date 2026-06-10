@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work | Rodrigo Andrade</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("themeMode") || "auto";
+        var resolved = saved === "auto"
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : saved;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) { document.documentElement.dataset.theme = "dark"; }
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23fb923c'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='-apple-system,sans-serif' font-weight='700' font-size='28' fill='white'>R</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="work">
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">RA</div>
+        <div class="brand-text">
+          <div class="brand-name">Rodrigo Andrade</div>
+          <div class="brand-role">iOS Developer · Dublin</div>
+        </div>
+      </div>
+      <nav class="tabs" role="tablist">
+        <a class="tab" href="index.html" role="tab" aria-selected="false">Home</a><a class="tab active" href="work.html" role="tab" aria-selected="true">Work</a><a class="tab" href="specdrive.html" role="tab" aria-selected="false">SpecDrive</a><a class="tab" href="about.html" role="tab" aria-selected="false">About</a><a class="tab" href="contact.html" role="tab" aria-selected="false">Contact</a>
+      </nav>
+      <div class="topbar-spacer" aria-hidden="true"></div>
+      <button id="tweaks-trigger" class="tweaks-trigger" type="button" aria-label="Tweaks"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.18.42.27.87.27 1.32 0 .45-.09.9-.27 1.32z"/></svg></button>
+    </header>
+    <main class="content">
+      <div class="page">
+        <header class="page-head">
+          <h1 class="page-title">Work</h1>
+          <p class="page-sub">26 years of writing software. 17 of them on iOS.</p>
+        </header>
+        <div data-career-chart></div>
+        <div class="timeline"><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #0b3d91"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">Mar 2022 – Present</span><span class="tl-loc">Swords, Ireland</span></div>
+            <h3 class="tl-company">Ryanair <span class="tl-sub">· Europe’s Favourite Airline</span></h3>
+            <div class="tl-role">iOS Developer</div>
+            <ul class="tl-bullets"><li>Kiosk feature team: check-in and bag drop directly from the iPhone app, paired with airport machines.</li><li>Maintain the Day Of Travel feature: every screen a passenger sees from check-in to disembarkation.</li><li>Ship and maintain critical functionality used by millions of travellers.</li></ul>
+          </div>
+        </div><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #7a3ad4"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">Nov 2018 – Feb 2022</span><span class="tl-loc">Porto, Portugal</span></div>
+            <h3 class="tl-company">Fuze</h3>
+            <div class="tl-role">iOS Developer</div>
+            <ul class="tl-bullets"><li>Built features in Swift and SwiftUI; maintained legacy Objective-C across the whole codebase.</li><li>Corporate communications suite: HD video, VoIP, carrier calls, IM and SMS.</li><li>Worked across the entire app rather than a single segment.</li></ul>
+          </div>
+        </div><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #16a34a"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">May 2017 – Oct 2018</span><span class="tl-loc">Porto, Portugal</span></div>
+            <h3 class="tl-company">XING</h3>
+            <div class="tl-role">iOS Developer</div>
+            <ul class="tl-bullets"><li>On the video team: gave product teams a way to embed video across the app.</li><li>Migrated from JWPlayer to a custom player built on AVPlayer.</li></ul>
+          </div>
+        </div><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #e11d48"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">Dec 2015 – Mar 2017</span><span class="tl-loc">Porto Alegre, Brazil</span></div>
+            <h3 class="tl-company">Apple Developer Academy | PUCRS</h3>
+            <div class="tl-role">iOS Instructor</div>
+            <ul class="tl-bullets"><li>Two-year program with Apple and PUCRS, taught iOS development to ~50 students.</li><li>Mentored teams shipping real apps and launching mobile businesses.</li><li>Demoed Xcode Server, code coverage and CI to other Academy sites in Brazil.</li></ul>
+          </div>
+        </div><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #f59e0b"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">Jan 2011 – Jul 2015</span><span class="tl-loc">Porto Alegre, Brazil</span></div>
+            <h3 class="tl-company">Grupo RBS</h3>
+            <div class="tl-role">iOS Engineer / Tech Lead</div>
+            <ul class="tl-bullets"><li>Founded RBS’s first mobile team and led the move from paper to digital.</li><li>Worked with backend on the nightly upload that delivered the newspaper to subscribers’ iPads.</li><li>Sat in board meetings to design the customer transition; partnered with product on monetisation.</li></ul>
+          </div>
+        </div><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #0891b2"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">Aug 2009 – Dec 2010</span><span class="tl-loc">Remote</span></div>
+            <h3 class="tl-company">MobiMarket</h3>
+            <div class="tl-role">iOS Developer</div>
+            <ul class="tl-bullets"><li>Full-time remote, building apps for Estadão, Caras, Valor Econômico, McDonald’s and others.</li><li>Early days of the iOS SDK: Objective-C, MRC, no ARC yet.</li></ul>
+          </div>
+        </div><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #64748b"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">Jul 2007 – May 2009</span><span class="tl-loc">Brazil</span></div>
+            <h3 class="tl-company">Conectt</h3>
+            <div class="tl-role">Web Developer</div>
+            <ul class="tl-bullets"><li>C#, Windows Workflow Foundation, SharePoint (WSS 3.0 / MOSS 2007).</li></ul>
+          </div>
+        </div><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #64748b"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">Jan 2004 – Jul 2007</span><span class="tl-loc">Brazil</span></div>
+            <h3 class="tl-company">ABSIS Informática</h3>
+            <div class="tl-role">Web Developer</div>
+            <ul class="tl-bullets"><li>VB.NET and ASP.NET: HR sites for Grendene, Zaffari, Mercúrio and RENNER.</li></ul>
+          </div>
+        </div><div class="tl-item">
+          <div class="tl-rail"><div class="tl-dot" style="background: #64748b"></div></div>
+          <div class="card tl-card">
+            <div class="tl-meta"><span class="tl-dates">Oct 2000 – Aug 2003</span><span class="tl-loc">Brazil</span></div>
+            <h3 class="tl-company">Grupo RBS (early)</h3>
+            <div class="tl-role">Web Developer</div>
+            <ul class="tl-bullets"><li>clicRBS: HTML/JavaScript for web design, then promoted to Team Manager.</li></ul>
+          </div>
+        </div></div>
+      </div>
+    </main>
+    <nav class="dock" role="tablist">
+      <a class="dock-tab" href="index.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span class="dock-label">Home</span></a><a class="dock-tab active" href="work.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4h8v2"/><path d="M3 12h18"/></svg></span><span class="dock-label">Work</span></a><a class="dock-tab" href="specdrive.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l4 4v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span><span class="dock-label">SpecDrive</span></a><a class="dock-tab" href="about.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></span><span class="dock-label">About</span></a><a class="dock-tab" href="contact.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="dock-label">Contact</span></a>
+    </nav>
+  </div>
+  <script src="js/scripts.js"></script>
+</body>
+</html>

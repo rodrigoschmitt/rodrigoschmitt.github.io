@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Rodrigo Andrade</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("themeMode") || "auto";
+        var resolved = saved === "auto"
+          ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : saved;
+        document.documentElement.dataset.theme = resolved;
+      } catch (e) { document.documentElement.dataset.theme = "dark"; }
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23fb923c'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='-apple-system,sans-serif' font-weight='700' font-size='28' fill='white'>R</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="about">
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">RA</div>
+        <div class="brand-text">
+          <div class="brand-name">Rodrigo Andrade</div>
+          <div class="brand-role">iOS Developer · Dublin</div>
+        </div>
+      </div>
+      <nav class="tabs" role="tablist">
+        <a class="tab" href="index.html" role="tab" aria-selected="false">Home</a><a class="tab" href="work.html" role="tab" aria-selected="false">Work</a><a class="tab" href="specdrive.html" role="tab" aria-selected="false">SpecDrive</a><a class="tab active" href="about.html" role="tab" aria-selected="true">About</a><a class="tab" href="contact.html" role="tab" aria-selected="false">Contact</a>
+      </nav>
+      <div class="topbar-spacer" aria-hidden="true"></div>
+      <button id="tweaks-trigger" class="tweaks-trigger" type="button" aria-label="Tweaks"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.18.42.27.87.27 1.32 0 .45-.09.9-.27 1.32z"/></svg></button>
+    </header>
+    <main class="content">
+      <div class="page about-page">
+        <header class="page-head">
+          <h1 class="page-title">About</h1>
+          <p class="page-sub">The short version of a long career.</p>
+        </header>
+        <div class="about-grid">
+          <div class="about-photo-card card">
+            <img src="assets/profile.jpg" alt="Rodrigo" class="about-photo"/>
+            <div class="about-name">Rodrigo Schmitt de Andrade</div>
+            <div class="about-loc">Swords, County Dublin, Ireland</div>
+          </div>
+          <div class="about-text card">
+            <p>I started writing for the web in 2000 (HTML and JavaScript at a Brazilian media group called RBS) and switched to iOS in 2009, the year the SDK opened up to everyone. I haven’t left.</p>
+            <p>At RBS I founded the first mobile team and led the move from paper to digital, partnering with backend on the nightly upload that delivered the newspaper to subscribers’ iPads. I sat in board meetings designing the customer transition and worked with product on monetisation.</p>
+            <p>I taught at the Apple Developer Academy at PUCRS for two years, fifty students, real apps shipped. Apple invited me to demo Xcode Server, code coverage and CI to other Academy sites in Brazil. That’s still one of the highlights.</p>
+            <p>After Brazil came Portugal: XING and Fuze, working on video and corporate communications. Since 2022 I’ve been in Dublin at Ryanair, on the team that builds the kiosk check-in flow.</p>
+            <p>On the side I build SpecDrive, an iPad &amp; Mac app that brings Spec-Driven Development to non-technical builders. It’s where I get to make all the decisions, and it’s teaching me a lot about restraint.</p>
+          </div>
+        </div>
+        <section class="section">
+          <div class="section-head"><h2>Education</h2></div>
+          <div class="card edu-card">
+            <div class="edu-school">Faculdade de Tecnologia SENAC RS</div>
+            <div class="edu-degree">Software Analysis and Development · Technologist</div>
+            <div class="edu-years">2007 – 2015</div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="section-head"><h2>Recognition</h2></div>
+          <div class="awards">
+        <div class="award-card card">
+          <div class="award-icon">
+            <svg viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="32" cy="32" r="22"/><path d="M22 32l8 8 14-16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h4 class="award-title">Apple WWDC Scholarship</h4>
+            <p class="award-sub">Awarded by Apple to attend the Worldwide Developers Conference.</p>
+          </div>
+        </div>
+        <div class="award-card card">
+          <div class="award-icon">
+            <svg viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M32 8l6 12 14 2-10 10 2 14-12-6-12 6 2-14-10-10 14-2z" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <h4 class="award-title">Patent: Synchronized A/V Display</h4>
+            <p class="award-sub">Apparatus and system for synchronized display of visual and audio information.</p>
+          </div>
+        </div>
+      </div>
+        </section>
+        <section class="section">
+          <div class="section-head"><h2>Languages</h2></div>
+          <div class="card lang-card">
+            <div class="lang-row"><span>English</span><span class="lang-level">Professional working</span></div>
+            <div class="lang-row"><span>Portuguese</span><span class="lang-level">Native</span></div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <nav class="dock" role="tablist">
+      <a class="dock-tab" href="index.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span class="dock-label">Home</span></a><a class="dock-tab" href="work.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4h8v2"/><path d="M3 12h18"/></svg></span><span class="dock-label">Work</span></a><a class="dock-tab" href="specdrive.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l4 4v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span><span class="dock-label">SpecDrive</span></a><a class="dock-tab active" href="about.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg></span><span class="dock-label">About</span></a><a class="dock-tab" href="contact.html"><span class="dock-glyph" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="dock-label">Contact</span></a>
+    </nav>
+  </div>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
